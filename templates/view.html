@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Products</h2>
+        <table>
+            <tr>
+                <td>Name</td>
+                
+                <td>Amount</td>
+                <td>Price</td>
+                <td>Total</td>
+                <td>Entry Date</td>
+                <td>Exit Date</td>
+                <td>Category</td>
+            </tr>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                
+                <td>{{ product.amount }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.total }}</td>
+                <td>{{ product.entry_date }}</td>
+                <td>{{ product.exit_date }}</td>
+                <td> {{ product.category_name }} </td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td>Total Amount</td>
+                <td>{{ values["qnt"] }}</td>
+                <td>Total Value</td>
+                <td>{{ values["total"] }}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
