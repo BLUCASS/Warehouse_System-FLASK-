@@ -10,6 +10,7 @@ session = Session()
 
 
 class Category(Base):
+    """Creating the table for the category of the products"""
     __tablename__ = 'categories'
     id = Column(Integer, primary_key=True)
     category_name = Column(String(50), nullable=False)
@@ -19,6 +20,8 @@ class Category(Base):
 
 
 class Product(Base):
+    """Creting the table for the products, who will interact with an relashionship
+    with the Category table"""
     __tablename__ = 'products'
     id = Column(Integer, primary_key=True)
     name = Column(String(50), nullable=False)
