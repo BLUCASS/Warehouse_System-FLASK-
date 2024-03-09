@@ -1,9 +1,4 @@
-from model import Category, Product, engine
-from sqlalchemy.orm import sessionmaker
-
-
-Session = sessionmaker(bind=engine)
-session = Session()
+from model import Category, Product, session
 
 
 class DbManagement():
@@ -14,7 +9,6 @@ class DbManagement():
 
     def get_products(self) -> str:
         data = session.query(Product).all()
-        session.close()
         return data
     
     def get_totals(self) -> float:
@@ -27,24 +21,29 @@ class DbManagement():
         return {'total': total, 'qnt': qnt}
 
     def insert_product(self, name, price, amount, category) -> None:
+        from datetime import datetime
+        now = datetime.now()
+        now = datetime.strftime(now, "%d/%m/%Y %H:%M")
         total = round(int(amount) * float(price), 2)
         product = Product(name=name,
                           price=price,
                           amount=amount,
                           total=total,
+                          entry_date=now,
                           category_name=category)
         self.__add_data(product)
 
     def reduce_inventory(self, data) -> None:
         from datetime import datetime
-        print(data)
+        now = datetime.now()
+        now = datetime.strftime(now, "%d/%m/%Y %H:%M")
         items = self.__search_product(data["name"].title())
         qnt = int(data["amount"])
         for item in items:
             if item.amount >= qnt:
                 item.amount -= qnt
                 item.total = item.amount * item.price
-                item.exit_date = datetime.utcnow()
+                item.exit_date = now
                 if item.amount == 0: session.delete(item)
                 break
             else:
@@ -52,11 +51,9 @@ class DbManagement():
                 qnt -= item.amount
                 session.delete(item)
         session.commit()
-        session.close()
 
     def __search_product(self, name) -> object:
         products = session.query(Product).filter(Product.name == name).all()
-        session.close()
         if len(products) != 0: return products
         return False
     
@@ -77,8 +74,6 @@ class DbManagement():
             session.rollback()
         else:
             session.commit()
-        finally:
-            session.close()
 
     def remove_product(self, name) -> None:
         products = self.__search_product(name)
@@ -89,8 +84,6 @@ class DbManagement():
             session.rollback()
         else:
             session.commit()
-        finally:
-            session.close()
 
     def remove_category(self, name) -> None:
         category = self.__search_category(name)
@@ -100,5 +93,3 @@ class DbManagement():
             session.rollback()
         else:
             session.commit()
-        finally:
-            session.close()

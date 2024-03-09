@@ -1,27 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
     <title>Home</title>
+
 </head>
+
 <body>
-    <h1>This is your homepage</h1>
-    <table>
-        <td>
-                <tr>
-                    <a href="/insert/category">Insert Category</a>
-                </tr>
-                <tr>
-                    <a href="/insert/product">Insert Product</a>
-                </tr>
-                <tr>
-                    <a href="/reduce">Reduce Inventory</a>
-                </tr>
-                <tr>
-                    <a href="/view/products">View Products</a>
-                </tr>
-        </td>
-    </table>
+
+    <header>
+        <table class="header-link">
+            <tr class="header-link">
+                <td class="header-link"><h1>Warehouse System</h1></td>
+                <td class="header-link"><a class="header-link" href="/">Homepage</a></td>
+                <td class="header-link"><a class="header-link" href="/view/products">View Products</a></td>
+            </tr>
+        </table>
+    </header>
+    
+    <section>
+        <table class="home-table">
+            <tr class="home-table">
+                <td class="home-table"><a href="/insert/category">Insert Category</a></td>
+                <td class="home-table"><a href="/insert/product">Insert Product</a></td>
+                <td class="home-table"><a href="/reduce">Reduce Inventory</a></td>
+                <td class="home-table"><a href="/view/products">View Products</a></td>
+                <td class="home-table"><a href="/remove/product">Remove Product</a></td>
+                <td class="home-table"><a href="/remove/category">Remove Category</a></td>
+            </tr>
+        </table>
+    </section>
+
 </body>
 </html>

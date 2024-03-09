@@ -1,9 +1,12 @@
-from sqlalchemy import create_engine, Column, String, Integer, ForeignKey, Float, DateTime
+from sqlalchemy import create_engine, Column, String, Integer, ForeignKey, Float
 from sqlalchemy.orm import declarative_base, relationship, sessionmaker
-from datetime import datetime
+
 
 engine = create_engine('sqlite:///market.db')
 Base = declarative_base()
+
+Session = sessionmaker(bind=engine)
+session = Session()
 
 
 class Category(Base):
@@ -24,8 +27,8 @@ class Product(Base):
     total = Column(Float)
     category_name = Column(String(50), ForeignKey("categories.category_name", ondelete='CASCADE'), nullable=False)
     # RECEBE A FOREIGNKEY COM A TABLENAME.NOME DA COLUNA
-    entry_date = Column(DateTime, default=datetime.utcnow())
-    exit_date = Column(DateTime)
+    entry_date = Column(String)
+    exit_date = Column(String)
     category = relationship("Category", back_populates="products")
     # RECEBE UMA RELATIONSHIP COM A CLASSE E BACK_POPULATES COM A PROPRIA TABLENAME
 

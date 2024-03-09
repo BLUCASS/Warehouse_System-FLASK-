@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
     <title>Insert Category</title>
+
 </head>
+
 <body>
+
+    <header>
+        <table class="header-link">
+            <tr class="header-link">
+                <td class="header-link"><h1>Warehouse System</h1></td>
+                <td class="header-link"><a class="header-link" href="/">Homepage</a></td>
+                <td class="header-link"><a class="header-link" href="/view/products">View Products</a></td>
+            </tr>
+        </table>
+    </header>
+
     <div class="container">
 
+        <h2>Insert the new category</h2>
+
         <div class="category-form">
-            <h2>Insert the new category</h2>
+
             <form action="/insert/category/send" method="post">
 
                 <label for="name">Category Name</label>
@@ -17,6 +35,7 @@
                 <button type="submit">Submit</button>
 
             </form>
+        
         </div>
 
     </div>

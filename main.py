@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request
 from controller import DbManagement
 
+
 app = Flask(__name__)
 
 
